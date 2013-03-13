@@ -1,7 +1,7 @@
 xdescribe('uiMap', function () {
   var scope, $rootScope, $compile;
 
-  beforeEach(module('ui.directives'));
+  beforeEach(module('ui.map'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $rootScope = _$rootScope_;
     $compile = _$compile_;
