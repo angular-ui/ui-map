@@ -2,7 +2,7 @@
 
 ***
 
-[![Build Status](https://secure.travis-ci.org/angular-ui/angular-ui.png)](http://travis-ci.org/angular-ui/angular-ui)
+[![Build Status](https://secure.travis-ci.org/angular-ui/ui-map.png)](http://travis-ci.org/angular-ui/ui-map)
 
 ## Usage
 
