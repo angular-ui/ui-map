@@ -92,7 +92,9 @@
         restrict: 'A',
         link: function (scope, elm, attrs) {
           scope.$watch(attrs[directiveName], function (newObject) {
-            bindMapEvents(scope, events, newObject, elm);
+            if (newObject) {
+              bindMapEvents(scope, events, newObject, elm);
+            }
           });
         }
       };
