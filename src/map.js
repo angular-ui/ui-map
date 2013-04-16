@@ -1,5 +1,5 @@
 (function () {
-  var app = angular.module('ui.directives');
+  var app = angular.module('ui.map', []);
 
   //Setup map events from a google map object to trigger on a given element too,
   //then we just use ui-event to catch events from an element
@@ -19,13 +19,13 @@
   }
 
   app.directive('uiMap',
-    ['ui.config', '$parse', function (uiConfig, $parse) {
+    ['uiMapConfig', '$parse', function (uiMapConfig, $parse) {
 
       var mapEvents = 'bounds_changed center_changed click dblclick drag dragend ' +
         'dragstart heading_changed idle maptypeid_changed mousemove mouseout ' +
         'mouseover projection_changed resize rightclick tilesloaded tilt_changed ' +
         'zoom_changed';
-      var options = uiConfig.map || {};
+      var options = uiMapConfig || {};
 
       return {
         restrict: 'A',
@@ -43,12 +43,12 @@
       };
     }]);
 
-  app.directive('uiMapInfoWindow',
-    ['ui.config', '$parse', '$compile', function (uiConfig, $parse, $compile) {
+  app.value('uiMapInfoWindowConfig', {}).directive('uiMapInfoWindow',
+    ['uiMapInfoWindowConfig', '$parse', '$compile', function (uiMapInfoWindowConfig, $parse, $compile) {
 
       var infoWindowEvents = 'closeclick content_change domready ' +
         'position_changed zindex_changed';
-      var options = uiConfig.mapInfoWindow || {};
+      var options = uiMapInfoWindowConfig || {};
 
       return {
         link: function (scope, elm, attrs) {

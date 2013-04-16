@@ -1,22 +1,19 @@
 {
   "author": "AngularUI",
   "name": "angular-ui-map",
-  "version": "0.4.0",
+  "version": "0.0.1",
   "homepage": "http://angular-ui.github.com",
   "keywords": [
     "angular",
     "angularui",
     "map"
   ],
-  "main": "./ui-map.js",
+  "main": "./src/map.js",
   "dependencies": {
     "angular": ">= 1.0.2",
-    "angular-module": "latest",
-    "angular-mocks": "~1.0.5",
     "angular-ui-utils": "latest"
   },
   "devDependencies": {
-    "angular-module": "latest",
     "angular-mocks": ">= 1.0.2"
   }
 }
