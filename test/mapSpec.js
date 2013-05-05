@@ -1,4 +1,4 @@
-xdescribe('uiMap', function () {
+describe('uiMap', function () {
   var scope, $rootScope, $compile;
 
   beforeEach(module('ui.map'));
@@ -10,17 +10,17 @@ xdescribe('uiMap', function () {
   function createMap(options, events) {
     scope.gmapOptions = options || {};
     scope.gmapEvents = events || {};
-    $compile("<div ui-map='gmap' ui-options='gmapOptions'" +
-      "' ui-event='gmapEvents'></div>")(scope);
+    $compile("<div><div ui-map='gmap' ui-options='gmapOptions'" +
+      "' ui-event='gmapEvents'></div></div>")(scope);
   }
 
   function createWindow(options, events, inner) {
     scope.gOptions = options || {};
     scope.gEvents = events || {};
-    inner = inner || angular.element('');
-    var elm = angular.element("<div ui-map-info-window='ginfo' " +
-      "ui-options='gOptions' ui-event='gEvents'></div>");
-    elm.append(inner);
+    var elm = angular.element("<div><div ui-map-info-window='ginfo' " +
+      "ui-options='gOptions' ui-event='gEvents'></div></div>");
+    if (inner)
+      elm.children().append(inner);
     $compile(elm)(scope);
   }
 
@@ -67,15 +67,15 @@ xdescribe('uiMap', function () {
     });
 
     it('should create info window with given options & content', function () {
-      var content = $('<h1>Hi</h1>');
+      var content = angular.element('<h1>Hi</h1>');
       createWindow({ zIndex: 5 }, {}, content);
       expect(scope.ginfo.getZIndex()).toBe(5);
       expect(scope.ginfo.getContent().innerHTML)
-        .toBe($('<div>').append(content).html());
+        .toBe(angular.element('<div>').append(content).html());
     });
 
     it('should $compile content and recognize scope changes', function () {
-      var inner = $('<input ng-model="myVal">');
+      var inner = angular.element('<input ng-model="myVal">');
       createWindow({}, {}, inner);
       createMap();
       scope.$apply(function () {
@@ -90,6 +90,7 @@ xdescribe('uiMap', function () {
     });
 
     it('should recognize infowindow events in ui-event as "map-eventname"', function () {
+      expect(scope.closed).toBeUndefined();
       createWindow({}, {
         'map-closeclick': 'closed = true'
       });
