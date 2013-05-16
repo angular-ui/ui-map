@@ -8,7 +8,7 @@
     "angularui",
     "map"
   ],
-  "main": "./src/map.js",
+  "main": "./ui-map.js",
   "dependencies": {
     "angular": ">= 1.0.2",
     "angular-ui-utils": "latest"

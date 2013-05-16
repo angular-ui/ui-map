@@ -26,7 +26,6 @@ module.exports = function (grunt) {
         ' * @license <%= pkg.license %>',
         ' */',
         ''].join('\n'),
-      destName : 'out/build/<%= pkg.name %>',
       view : {
         humaName : "UI Map",
         repoName : "ui-map"
@@ -36,7 +35,7 @@ module.exports = function (grunt) {
       unit: testConfig('test/karma.conf.js')
     },
     jshint:{
-      files:['<%= pkg.name %>.js', 'gruntFile.js', 'test/**/*Spec.js', 'demo/**/*.js'],
+      files:['<%= meta.view.repoName %>.js', 'gruntFile.js', 'test/**/*Spec.js', 'demo/**/*.js'],
       options:{
         curly:true,
         eqeqeq:true,
@@ -54,7 +53,7 @@ module.exports = function (grunt) {
       options: {banner: '<%= meta.banner %>'},
       build: {
         files: {
-          '<%= meta.destName %>.min.js': ['<%= pkg.name %>.js']
+          'out/build/<%= meta.view.repoName %>.min.js': ['<%= meta.view.repoName %>.js']
         }
       }
     },

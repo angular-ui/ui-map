@@ -13,7 +13,7 @@ files = [
   'components/angular/angular.js',
   'components/angular-mocks/angular-mocks.js',
   'components/angular-ui-utils/modules/event/event.js',
-  'src/*.js',
+  'ui-map.js',
   'test/googlemaps.js',
   'test/*Spec.js'
 ];
