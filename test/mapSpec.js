@@ -19,8 +19,9 @@ describe('uiMap', function () {
     scope.gEvents = events || {};
     var elm = angular.element("<div><div ui-map-info-window='ginfo' " +
       "ui-options='gOptions' ui-event='gEvents'></div></div>");
-    if (inner)
+    if (inner){
       elm.children().append(inner);
+    }
     $compile(elm)(scope);
   }
 
