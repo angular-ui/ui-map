@@ -40,12 +40,12 @@ describe('uiMap', function () {
       expect(scope.gmap.getCenter()).toBe(center);
     });
 
-    it('should pass events to the element as "map-eventname"', function () {
+    it('should pass events to the element as "eventname"', function () {
       scope.zoomy = false;
       scope.county = 0;
       createMap({}, {
-        'map-zoom_changed': 'zoomy = true',
-        'map-dblclick map-dragend': 'county = county + 1'
+        'zoom_changed': 'zoomy = true',
+        'dblclick dragend': 'county = county + 1'
       });
       google.maps.event.trigger(scope.gmap, 'zoom_changed');
       expect(scope.zoomy).toBeTruthy();
@@ -89,13 +89,16 @@ describe('uiMap', function () {
       expect(inner.val()).toBe('final');
     });
 
-    it('should recognize infowindow events in ui-event as "map-eventname"', function () {
+    it('should recognize infowindow events in ui-event as "eventname"', function () {
       expect(scope.closed).toBeUndefined();
+      dump(scope.closed);
       createWindow({}, {
-        'map-closeclick': 'closed = true'
+        'closeclick': 'closed = true'
       });
       createMap();
+      dump(scope.closed);
       google.maps.event.trigger(scope.ginfo, 'closeclick');
+      dump(scope.ginfo);
       expect(scope.closed).toBe(true);
     });
   });
