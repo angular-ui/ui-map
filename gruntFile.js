@@ -60,7 +60,10 @@ module.exports = function (grunt) {
     copy: {
       main: {
         files: [
-          {src: ['demo/demo.html'], dest: 'out/demos.html', filter: 'isFile'}
+          {src: ['<%= meta.view.repoName %>.js'], dest: 'out/build/<%= meta.view.repoName %>.js', filter: 'isFile'},
+          {src: ['demo/demo.html'], dest: 'out/demos.html', filter: 'isFile'},
+          {src: ['demo/demo.css'], dest: 'out/assets/css/demos.css', filter: 'isFile'},
+          {src: ['demo/demo.js'], dest: 'out/core/demo.js', filter: 'isFile'}
         ]
       },
       template : {
