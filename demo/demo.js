@@ -2,6 +2,8 @@
 $("#map").hide();
 requireCss('assets/css/demos.css');
 
+function initCall(){ console.log("Google maps api initialized.");}
+
 requirejs(
   {
     paths: {
@@ -10,7 +12,7 @@ requirejs(
     shim: {
       'ui.map': { deps: [
         'https://rawgithub.com/angular-ui/ui-utils/master/modules/event/event.js',
-        'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'
+        'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initCall'
       ] }
     }
   },
