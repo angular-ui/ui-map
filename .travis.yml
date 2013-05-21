@@ -1,5 +1,8 @@
 ---
-after_success: out/.travis/after_success.sh
+language: node_js
+node_js:
+- "0.10"
+- '0.8'
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
@@ -7,128 +10,11 @@ before_install:
 - npm install
 - bower install
 before_script: out/.travis/before_script.sh
+script: grunt
+after_success: out/.travis/after_success.sh
 branches:
   only:
   - master
 env:
   global:
-  - REPO="git@github.com:douglasduteil/ui-map.git"
-  - secure: ! 'I6dJTr9R81bGG05Tm3ZZggnJXYZYOQdqWrRWEMJ1i73VBHepMgak1h5xo8KW
-
-      RPBDZXW5Enoq6fdUZxP33rx2RsHkME91w7Qm3euBUnVL04MOxITq5FEZdKvY
-
-      fnIacmPBqnnPU0dAD3cTBzcvEDaKJS/FY5BaFxU/OV04WRwmcjs='
-  - secure: ! 'Ha5usybl27J3eAcRDQYYoOx2nkQA8r0UDn7KsKbQojwNFVdmnTv+/eV4sNeS
-
-      iChbwbw389CPwBAzlLSDdADpQc2xdZ4DPgSCUZf5a2wNVAy41/Q1q5HvMRvg
-
-      tEN9jYZtiClqVKk5i2pURZxBb7Aja2vUpZ4T9nTz80++iJ1C69g='
-  - secure: ! 'UVkUdwvgZLqGG/Qz7hAhDIxGmPVXGCXFRQHusGgVBpj3Dde/RdRH1drzzjg2
-
-      VQPnMfdCawae9bwLL/pdmpcf23ALHfy+WQuE7rXArYEgwZ90a9onpV6inmi/
-
-      /N0RuRl/OvCBnvjzdUR3jApKFHdNw2jNplX3o+Vt2PhSLD9Nqgo='
-  - secure: ! 'pUi+3CNqOk1rmyAhakjq7RuslY8KVf6d+eRe0NsYS6idcoe2GluB9mcAD6LD
-
-      +l1Udz2GPzrz0t4MzjZDWYO3g//WLYa4K/10t+f5nSgfmS6gbIwp8J6UDtlu
-
-      5c0PGJ7azy7kyzx8475U7+KOhbYHR6g5ENWCU5QBxa0qFzvLn5o='
-  - secure: ! 'ldwZA5jbItBJIwMfbjpel1clcB/yOgB3o2q8lkWshQYaQZ7NTpKDA3s1A2pO
-
-      hSln6iK0cvqmrx4N8HWAcCmmIrOoLz3ipEqbVc1RSDMTzMgUpno6nVMo8JO7
-
-      W6CWyqrvmZAs0+bLYjtXwKWoI9cAcwVZIQXg0m5F9X1/zRlDS9Y='
-  - secure: ! 'o6MpUf1p3+NyUQVZ6P09by5VLhjyxSTtimkBcZktseK9EPKjLIvWx0wvw6Gg
-
-      YLdllwkSKdGoM4RIf877p6O+WEQvhUg8uNLVh3yIz55Dye7fSwG02S/+tbC/
-
-      VVv5RfN+jI/CgFFPYGIuMskcTXle7dpLdvegiQ2dQGOq6WXxQLE='
-  - secure: ! 'XyuLKPaBEvPcRaarCM4jw6Ji3Dvi7eNfc2cNGHdhbROFVL2dCjjnyGqApU2K
-
-      1tTk6V20xeE4Hlg5hjq1meNXql8PpiDQ+W8fTAFDnges9r7n6t7i/b3YEAYD
-
-      i2kJ0VArWzOWpPBzLAupImR/WJ8tO4MQWojMOJjfsJb+olwMJHo='
-  - secure: ! 'Qks/H1yhSHLff6jQKn5p0hRVlI7FK0I5XD9wywMpaF0l/BdTRnH67t9WShHr
-
-      lcEO6K6cUYpm3UKSd2ydzw5cgCh5Eu5dijiKtYMoQm2ihocbb367SbFGOTR7
-
-      Sp/gLWWGWtC4CURtZ1HlK9gHR9/WYuSITZDnlXYYObetKdn0uN8='
-  - secure: ! 'GgjYJghsG/EBqEo+0Cy72t1PPhoydZfhd7cEyOXqMN4c99VwjGRdI3z8TcMy
-
-      lLhCzb5arP1LdKez9k5WZ2YE+kAmsMcVF27MIitRKY9p409/z7AywYed9J4S
-
-      DccEhxVKvKc5zlitcXVfOhWypeYi140AKnN1mi6yRXCVf50qcjs='
-  - secure: ! 'eRUcH3mxQN79JiBuQ0xQMcL4Xfy2FH+idoUODBAVAzn7mvVxZ7ZrftSrJBUS
-
-      s+45Z6smCXFFHphi6y/XoEkGvBfOizsUxUU3VzKfYGCglEnWXk3YaGfWVcIS
-
-      D1RxxNku51tVFPWsg8DZrbNy20eO/G812a6mJFUrNrZEMUc12XU='
-  - secure: ! 'fSCenZ1ZNfriK2p/EkLnz7bT6+/tglB1DlVIkGfHWng1twn1mIM1aesispTr
-
-      HIhAqXWv+NXG8TlwB3+EU8+FayVZszBVdm4Ps8jZ5vFJeCS7NYSlIammvQwT
-
-      KyBASbZhIjVNIkhZNkZHOky9UueqRFLDqY50zQhEaJ4HOW2I4Bc='
-  - secure: ! 'idhQJcbc4zTiRphqOwk41SMOJOnDA5u2AaNgz8qZ1QCo6S8vWX3LMP67bBMQ
-
-      EwKcZyLwzT3YQ2ixsppcOolZEN5aZNhrC7Gd5LwkQJnuiOZjElPBB3QhNz8e
-
-      n3WEeuC6zO4wIj3LqxhzUqFVfbblsjeTXqqo451F8G0SivJDvZc='
-  - secure: ! 'B9qhb8CGli86CTUCbiyI0swUpTJToW6O5MKlohXN/J2mHM9r8i+AX50nZYcs
-
-      KaDUGHPSeqlTBLCOjAMUaL9o2z7UCuWtqfNgy4aMSZojPFpvew8+ZlGHSHSv
-
-      53SRXk7HXQs02bn1DKbilxYJDAUOPVp4zUbSE9SYwbch+YsVgZM='
-  - secure: ! 'T/xfs6/GKH/SOW0tvUs6dkdmaGFsElMT9P/5U5oK/Y0FbiGym2bZncp+7Sal
-
-      brTJFmKvpBRQ9LyZ1U7xZw/iQ09IWrh/ZaBHGyfMkojwYVSmLkCKXxZcpVc0
-
-      09gqNyBb5yOr09rwNTf8SZFCtpUSy6T/NFBtkVNP/8/8vGpv1eI='
-  - secure: ! 'jGHKnVg9Rk2Z+rqCQx349x9zB8vFuAO/nD6E91/LKfY8SiT9mVitmlBBN9E8
-
-      WezB8ZO7T9SpLcAv3BEsuDRy5MMzWVprl4i2rHQD1Q/6YljTNJEvavJhOEdP
-
-      uATPAvEugGh886TffF7JFwwSy1a1CC0sJamdv2/wX2bv3S0CyOc='
-  - secure: ! 'cMIEeQ/ZrBgv4DGEJeNSp0lDPZ+CU/gDakOg0i3EflJlGHfGivrgv2U47Utv
-
-      MLaVv1D/suCbUEHG9/z0QQdU09/jpP/10IHsls2I26nCBMWIiH0o5O2T1EvB
-
-      9aBXiraN7kCs+gXOy3PezQxDffkS2+l3sEMtzMl6nzF69/QAE6g='
-  - secure: ! 'hl1vGkzKOAKVOyCUZNkbV/7AHSJj1t0+W/Fj8/10usRJBOwvEtkriUfyUlGK
-
-      +AIYEmj4AZkmJBy7ccgg9pEAzEPuz0/w4e3G4vaVF1vN/z451RwppERP6vJZ
-
-      hI4g+8fERxKvuqT2Vz3uoAbd+iPlp6+GJEZ/py3NcgG685K2TXU='
-  - secure: ! 'EpgdZfE5Uv2UvJxTGLOkI27clSgzpIdsar28svBcl6ayLdNShUKy2v3N1TRs
-
-      C8qqp6X+oxl8JOMqRybZeRPu8CI0uhHchJri0atp/Z4PXS5gWfgi0lC+/IdV
-
-      3use0xcE8kFzCyj9GGOYWjinH35apIg/h/1Hh0qPjxZPcrt8hSo='
-  - secure: ! 'nolq0Y5hfsCmSKvX7cpMSqMbnKlcRxNOTfFJW/5C8GfkyU2WxJF4DC1vDY88
-
-      cw+V8pADhUDkr7ASYKOCDy84e7Ab+QHlcwT58WsszlYy/19FnUy5DVPEQzWo
-
-      QsgoKZ7nut7VMWxBYMpf7ChRGNlvbH+m2qXAi0Xe7PJCBO/sWFQ='
-  - secure: ! 'WYqISTLdrweuVEavFGn/PwOUY/h+PprIpCRsMDpHcIUFoOwnPzcEV3e3Tww5
-
-      lMnMCRecTJgfcaoBUOeJkq9EEKTKUrgzhHztl4huSR0Ly49qAKXX2BJMZ5fR
-
-      D5HWpn8cyyOEiiLbhZaDiWBDSsmNcMScy6m1vh0PZ0FO48n7C4w='
-  - secure: ! 'JgFzwP2rDqfzZnaMwvNuhtIfe+WEfBfTEZnTjCZKabPa8TYB0nDLzS/KIovh
-
-      eifoRqBjAPOC2syxb0VfIDtUU1Zvqd1Tdf0zc8f/nvYu+ca2QiGnNhHk03Ny
-
-      IB/opNlMWXQOvp/uiprHVKHMHvt5dmr0GeDDBAH94lEfGkI5VI8='
-  - secure: ! 'T11bAKygTPKS+6xSWM+tJViDLlIq76wvyrHHhp3735vFi+geWDzOux68bXmV
-
-      ACELhBbpvdEXGJZ3TCXSXC0Vtk4ZmwalGGUtCNOyahDzeHWkQkJpFUDnURWR
-
-      zM8OcTNn+OyLfbirx9/E+YmTUOrwX7ECykUNTcmk5k4jEQMwh1g='
-  - secure: ! 'GCf+jSHXBQRe02RlVqM6DfoEgNiptUYn3MBlzYCEoys01nqMqZYg2RphGm6a
-
-      9ldJf2/kjD5Xi4sKdLG+qXDJsHAi890/TviXYC1GhGUySEFgv6uLjum63KeN
-
-      C1JoapFaPHUXG2pyfqtsC8h/4PLAEgJ0dpS7d8zWIULRW5qyHcc='
-language: node_js
-node_js:
-- '0.8'
-script: grunt
+  - REPO="git@github.com:angular-ui/ui-map.git"
