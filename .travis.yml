@@ -1,11 +1,135 @@
- language: node_js
- node_js:
-   - "0.8"
+---
+language: node_js
+node_js:
+- '0.10'
+- '0.8'
+before_install:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- npm install -g bower grunt-cli
+- npm install
+- bower install
+before_script: out/.travis/before_script.sh
+script: grunt
+after_success: out/.travis/after_success.sh
+branches:
+  only:
+  - master
+env:
+  global:
+  - REPO="git@github.com:angular-ui/ui-map.git"
+  - secure: ! 'Ggzx5RFlcrU4HGtp43dfikwDEyAz5KyMd5IHZOmqh+fsE0XHHyRSUHKXBwLw
 
- before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - npm install -g bower karma
-  - bower install
+      XIdERDdDgcx/Uy/gG07hdc3bm9uBCebtf2TUiC10Morv4X4gYq9fmNEiqYFs
 
- script: "karma start test/test.conf.js --browsers=Firefox,PhantomJS"
+      ZuMam+e9j8iyFa8zV0ptDPUfiwtMc4sbc8Yj2MniNsi0t602mNc='
+  - secure: ! 'axLcS6fl7aKTiklqZ0f9hg64iY8MZqSXN+DOoIEZCyCGSzPk0B58wd1HoA/D
+
+      T2WhbZIA7TMVFRWywtYv8kaTvaqjO5PJClwxhx/vR3KbQniMG2pbzubmTVsJ
+
+      sW53c2rcl4cSlFGRbNWvogRjRB1mv/yrFiYCzL0KUHq+OoOtgXU='
+  - secure: ! 'BwNIIBaStT8EUb8DEon0jZLTHv7cEMtAoFaS6zZx2/hsBxhKrX5yQZIgEaKS
+
+      yXR57p/X7MDfgbud9NdwlhlMb6hOCmtYab1totNNabYkXNkh7kdgIewHSuTF
+
+      CmXqnIJ/Cl6tw9R0nI/ulnGuAN8fSRbRmouLWJ02JpjUP2Q55v8='
+  - secure: ! 'LQOSYEr8LUFhTKwlxwZDDXPSudiBsH3pr8gPLacnb9Up4OHYwosI4f5oaZGi
+
+      UQW7ND90+hymsyFyPOx6NfRvIOaMVKHBvSoWPQfjigmTL6yz45191STr8YvI
+
+      Pv5+h++RVf0KOhm3zfzu2NK8A0Q2Ccwl78yVEpyB8wT3sG5z4zc='
+  - secure: ! 'Ur52cHqL1QvTCGL5+PBWpTDWIrkWB8nf3MJN+AFvhY+NODIRcosX4N2na8Wx
+
+      ULwkYeJ5BlnTjdueAEOy5GN24Kd2xTlenmbl/1jIbYNehaoyeWRSOJrMgLtl
+
+      YwUwd8X8CLakPvp/oSUM8m3Safm6lByJUsVjucg7Ee+Wvv0HJGE='
+  - secure: ! 'TBJHdn/zWfQDWF3YWOQ0fgZwPCM5IjHmHypFD5Ks/XRyXgDIn1YWT8dXAcl3
+
+      zNmZ6lXp4Xqkuisy8ENAnhCdWMW2bgDTAT+EkzFfqd9IZnKKi3eEEoL8R7sr
+
+      DzprJnksZJXNY7H71NPhav3aWNtA4Lw6t5njLhIvmOk9hd/meg4='
+  - secure: ! 'RsseeP4xur86aPPYOgxRoVpDAEs77x2d3MvZiC8ZMyW68+vw7BBzuz5KaN5J
+
+      YXAXUoe83P4q0e0RpCI8qN+Q5P7hIsTdypoKnO4zKDEoiE0DIR+JcKAd6mvi
+
+      pGhcabdItqxuPYZt9GWX3yZSug5o/hNXRmwxdpR5QCGdJsGFCvY='
+  - secure: ! 'DeIGQ2ZOE5q0WC6EhLODgTSBzSKWxgb+7+AuAln4uVFmG9whdXo2HHrkluih
+
+      3Dxld6Z+60eNSQJqSl94rDFe6yyz5+r3CnyrUWDCoz6EimXJQJ8sLgf0T36A
+
+      e5q0vlCobikomCJV1EeNrUKWFVcw58im8f5KSkmxGkZkpW8Ex80='
+  - secure: ! 'VhNk8nAkf3eBOkH2LxVshBFldn9BrhR66AXu9MXGSjMmxk4QyM+OStgeN4Ta
+
+      iA5j2buDVU9GcW0cHydonUoP9OvV8/muMuXTRuNocEhFwvmoIvIxndxkbR7Y
+
+      pjZtP5KfRqnk0iQ8EXNJY8HpaNkKlE/U+KJKjaH+6Jl32vYkF7E='
+  - secure: ! 'bUHhuQ7gYxLPCn4TyimL1wAhSJVdBuoor8l3Z6LiCP4fDkD3hFK9i3e6SbVy
+
+      qrXXjOHbr3/ghs9nuIy8Wmj1jTR6TanhxeAZ1dyR1ohlHKxwgoNCmjES3F8l
+
+      2j7NXQL1HCMkCR05BZgfr3tpSvSDMlS4q1K0cZVE1CimKA22U/k='
+  - secure: ! 'fxRO9CnicxrLOFu/rv+KpwTHglgz/XnE9GI3iWEziURXPnWQvemPggODdALt
+
+      a4lpASNh6KKD+lRV0i0ul710U/TFpkJk8uNqoeAtaLqpqx/Kc8e2HuKVJQHL
+
+      wpLpOjwtD8niOYGliyz0oOuj7XhOHvB7hWSaBdw+LJjP2LuouKw='
+  - secure: ! 'Uk4YG1mrgscEWV9f126X46D1RcblWan/9TcmKiCQsyYPVDj7erCLc59E7Ndm
+
+      /3TPfileWzImY/NZfrJau00insmq/OMhPKHX72CdrKNyaKo8y+bUx1Z/4CCV
+
+      1sh/Z+pZ5x9gx/KRbTrQH+fvR/31/OJSzBZIuhuh8+/Qb/9TJ9Q='
+  - secure: ! 'Fox77OixFE0y98/dEzHVxtkbbTf4zpwLF5/T3ZOLFwl8W+XT7fYFrZ0kKUTf
+
+      0hlZvXlpIKj1A94sKAUCRlh03LJGFmn+ZvKMXnnCK0rp4ZRnIreUh9+bUKsV
+
+      KfzLUXzbSt7PSBih9XnPxsWyL4kL7yOrX3eSV+EmxGsnp8JPpLg='
+  - secure: ! 'G6dkglxW/y+SLk3zEdAs/RTnZNAHjNHx3qAZmcYuDwGH9742zeQiyiZ87Vbm
+
+      d/MbYz/dW5EerLWXoIcHfbpxntSObp7qClUHewDqaFCuN3nbQseiDpLNK0TY
+
+      7LI1iAaDI/sY2tstX3FIK8wJJedawU7jUBBpoff5+yhpt48XZro='
+  - secure: ! 'eecQmGE+09JuVNCj86Ce47NWmOTewNQbfVlpjeHa6Im7mHMai0+eaHEcKAjw
+
+      qVcSYjpbc9qhhfUprc2MWf8HyYmBGSYq0b2xOgXVd2gHRhc2ICeQrEOz7f8b
+
+      73OSRPnCDrg8avjZTy6sJec2VwMY4L/Hz1C2+LpNjvXMt5Ltb+A='
+  - secure: ! 'JB8YGDVta+qdMSsSCK67/1TNokZl4pE82ka/ED2KB3jChFN5252FVjwFUlxx
+
+      DfWqyEpzm3HtOGXIX9B+sM+vFKT/GIReOx14iSiZEoZ0+MJIZplRsDN2PgiO
+
+      1l+HVxiDFFTBPd/0lfkl+cvBJ7vHuV8fKIq5QcWC4W8fyw7BO/U='
+  - secure: ! 'b4xVLXL58muqBhZzYznwXrsdPzEBONMaXtulg74NcaTA357GTleKkPfLD/lQ
+
+      xR7SN9wAH395xR1CxqeUgILG4h/PANjGfTxf+YBaNybu+pkjiCACePE/rgPV
+
+      oa6HftkvU7unPg1Qsy89w9+TO3RbLObl2LgmABdKXAni3cHTfJE='
+  - secure: ! 'ScGiDn76Ewnk/JaSe7xORoMloAle1jQKRcdMi3oEJpKTboMrqhJEybJ3lfhX
+
+      F/IdDVaneTAqXe2X2Dtutj6RN146/xyJiE1wLwzRTv6OifZVDBRhbZzdhrtb
+
+      Dyb5OE7G8/cEwhD/ZSLgOBugWSsi+74TJCQeymM22MhDClWd+sY='
+  - secure: ! 'SKSDcZb4Z0tRz54VIweY8HheagPFrEp14EdKX+MUSDKl3orWK9NyX5ZF1Acz
+
+      tiYDG+PhXysYVXq4iCs9odGxy5UyQyGvwkf8vKFG/4Q5LF0OQOpWC7btrzie
+
+      +sdWbFizB6FxCBFhsUocnmtvD4+oZWcu4KMxztKPdPdPv7r70cw='
+  - secure: ! 'KhcTRrGY8763gw9Lxy0E5iDp2a2tTS7CO/z9gX3kvw2uWIPnggaAxdsrDMae
+
+      rdFDAE2zNpDRxM67pPmeVrisRCRmdgJBz9RW6dTrRM5o5WJktEO5vYQRsibB
+
+      bHvhr/2q7qS8ynCTyD4UDi0PMlyy2pEI6mmAyCwiU9yj0viwWFo='
+  - secure: ! 'NYWbuzljMVP3rMIa2XwSAdNo+d4M8hkLnTleERyseH7F+/7FwTawylq+58aC
+
+      ejN34Xg1gAB2Ci33eFTIp4NKN7MzqGQRZNpD6J0QqO+s32PNJDDymCe40W++
+
+      Tv+mBlICsZ+7wmY2MenzcoLXj8YWMPI9dZ5AgkjqA3Qn7Cf0caM='
+  - secure: ! 'YO1+kO5biLPAczwVZe7hDSh5XbYHVhv9nL4yETljaHT65ou8euZfgqs/DwV/
+
+      O94cnYi2B6CXMS6IdbIBjxns1yTF2e5fymrtmqGyZh6APBXc+VItSht3Oapd
+
+      oz/QGN2jriGOyhr4DgT5SQMH89gFaodpnDCQep7mlOGkx31vLeA='
+  - secure: ! 'JiFeeeu4Z1KrXuEGotp/4/anTuN33Eo9NPSNrvo7yrRv1B3IJshUlMwbfqHo
+
+      xFvluSnmkT48hcbSUN4eXHwtOhjCGZxjMeJsHPzrwNQTzJWRSKn8Nqs9ZxMj
+
+      jKp/vvb4c3Hf33TmgMHdqrOGbvf+tmghzkrXgZ/zRmAU6PUgk0k='
