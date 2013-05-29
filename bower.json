@@ -14,6 +14,7 @@
     "angular-ui-utils": "latest"
   },
   "devDependencies": {
-    "angular-mocks": ">= 1.0.2"
+    "angular-mocks": ">= 1.0.2",
+    "angular-ui-docs": "angular-ui/angular-ui-docs"
   }
 }
