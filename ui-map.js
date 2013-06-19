@@ -48,7 +48,7 @@
       var infoWindowEvents = 'closeclick content_change domready ' +
         'position_changed zindex_changed';
       var options = uiMapInfoWindowConfig || {};
-
+      var compiled = false;
       return {
         link: function (scope, elm, attrs) {
           var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
@@ -72,7 +72,10 @@
           //Decorate infoWindow.open to $compile contents before opening
           var _open = infoWindow.open;
           infoWindow.open = function open(a1, a2, a3, a4, a5, a6) {
-            $compile(elm.contents())(scope);
+            if(!compiled){
+              $compile(elm.contents())(scope);
+              compiled = true;
+            }
             _open.call(infoWindow, a1, a2, a3, a4, a5, a6);
           };
         }
