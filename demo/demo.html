@@ -1,23 +1,8 @@
-<script>
-    requirejs(['core/demo.js']);
-</script>
-
-<!-- Le loading
-================================================== -->
-
-<div id="map-l" class="loadingAnimation" >
-    <div class="bowl_ringG">
-        <div class="ball_holderG">
-            <div class="ballG">
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Le directive
 ================================================== -->
 
-<section id="map" ng-non-bindable ng-controller="MapCtrl" ng-cloak>
+<section id="map" ng-controller="MapCtrl" ng-cloak>
     <div class="page-header">
         <h1>Google Maps</h1>
     </div>
@@ -50,6 +35,7 @@
             <!--Giving the div an id="map_canvas" fix problems with twitter bootstrap affecting
             google maps-->
             <div id="map_canvas" ui-map="myMap" class="span8 map"
+                 ui-map-promise="onGoogleReady.promise"
                  ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
                  ui-options="mapOptions">
             </div>
