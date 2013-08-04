@@ -3,121 +3,270 @@
 
 <head>
     <meta charset=utf-8/>
-    <title>Angular UI ~ UI Map Doc</title>
+    <title>Angular UI ~ UI.Map Doc</title>
 
     <!-- Le css -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/cssLoading.css">
-    <link rel="stylesheet" href="assets/css/prettify.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/prettify.css"/>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/demos.css"/>
+
 
 </head>
 
 <body>
 
-<!-- Le navbar
-================================================== -->
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <div class="dropdown pull-left">
-                <a class="brand dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-                    UI Map
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <li><a href="https://github.com/angular-ui/"><strong>Related Projects:</strong></a></li>
-                    <li class="divider"></li>
-                    <li><a href="http://angular-ui.github.io/">AngularUI</a></li>
-                    <li><a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a></li>
-                    <li><a href="http://angular-ui.github.io/ng-grid/">Grid</a></li>
-                    <li><a href="https://github.com/angular-ui/AngularJs.tmbundle">AngularJS.tmbundle</a></li>
-                    <li><a href="http://angular-ui.github.io/ui-router/sample/">Router <span class="label label-success">New!</span></a></li>
-                </ul>
-            </div>
-            <div class="nav-collapse pull-right">
-                <ul class="nav">
-                    <li class="dropdown" ng-show="!isLoading"  style="display: none">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li ng-repeat="s in sections"><a href="#{{s.id}}"> {{s.name}} </a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="margin: 32px;"></div>
-
-<!-- Le header
-================================================== -->
-<header class="hero-unit" id="overview">
-    <div class="container">
-
-        <h1>UI Map</h1>
-
-        <p>This directive allows you to add map elements.</p>
-
-        <p class="btn-group">
-            <a class="btn" href="https://github.com/angular-ui/ui-map"><i class="icon-github"></i> Code on Github</a>
-            <a class="btn btn-primary" href="https://github.com/angular-ui/ui-map/tree/gh-pages/build">
-                <i class="icon-download-alt icon-white"></i> Download <small>(0.0.3)</small>
-            </a>
-        </p>
-    </div>
-    <div class="bs-docs-social">
-        <div class="container">
-            <ul class="bs-docs-social-buttons">
-                <li>
-                    <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-map&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-                </li>
-                <li>
-                    <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-map&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
-                </li>
-                <li>
-                    <!-- Place this tag where you want the +1 button to render. -->
-                    <div class="g-plusone" data-size="medium"></div>
-
-                    <!-- Place this tag after the last +1 button tag. -->
-                    <script type="text/javascript">
-                        (function () {
-                            var po = document.createElement('script');
-                            po.type = 'text/javascript';
-                            po.async = true;
-                            po.src = 'https://apis.google.com/js/plusone.js';
-                            var s = document.getElementsByTagName('script')[0];
-                            s.parentNode.insertBefore(po, s);
-                        })();
-                    </script>
-                </li>
-            </ul>
-        </div>
-    </div>
-</header>
-
-<!-- Le main
-================================================== -->
-<div class="container main ng-cloak" ng-controller="MainCtrl" ng-cloak>
-    <div ng-include src="'demos.html'" onload="makeNav()"></div>
-</div>
-
-<!-- Le loading
-================================================== -->
-
-<div class="loadingAnimation" ng-show="isLoading">
-  <div class="bowl_ringG">
-    <div class="ball_holderG">
-      <div class="ballG">
+  <!-- Le navbar
+  ================================================== -->
+  <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+          <div class="container">
+              <div class="dropdown pull-left">
+                  <a class="brand dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                      UI.Map
+                      <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                      <li><a href="https://github.com/angular-ui/"><strong>Related Projects:</strong></a></li>
+                      <li class="divider"></li>
+                      <li><a href="http://angular-ui.github.io/">AngularUI</a></li>
+                      <li><a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a></li>
+                      <li><a href="http://angular-ui.github.io/ng-grid/">Grid</a></li>
+                      <li><a href="https://github.com/angular-ui/AngularJs.tmbundle">AngularJS.tmbundle</a></li>
+                      <li><a href="http://angular-ui.github.io/ui-router/sample/">Router <span class="label label-success">New!</span></a></li>
+                  </ul>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
-</div>
+  <div style="margin: 32px;"></div>
 
-<!-- Le javascript
+  <!-- Le header
+  ================================================== -->
+  <header class="hero-unit" id="overview">
+      <div class="container">
+
+          <h1>UI.Map</h1>
+
+          <p>This directive allows you to add map elements.</p>
+
+          <p class="btn-group">
+              <a class="btn" href="https://github.com/angular-ui/ui-map"><i class="icon-github"></i> Code on Github</a>
+              <a class="btn btn-primary" href="https://github.com/angular-ui/ui-map/tree/gh-pages/build">
+                  <i class="icon-download-alt icon-white"></i> Download <small>(0.0.3)</small>
+              </a>
+          </p>
+      </div>
+      <div class="bs-docs-social">
+          <div class="container">
+              <ul class="bs-docs-social-buttons">
+                  <li>
+                      <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-map&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                  </li>
+                  <li>
+                      <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-map&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                  </li>
+                  <li>
+                      <!-- Place this tag where you want the +1 button to render. -->
+                      <div class="g-plusone" data-size="medium"></div>
+
+                      <!-- Place this tag after the last +1 button tag. -->
+                      <script type="text/javascript">
+                          (function () {
+                              var po = document.createElement('script');
+                              po.type = 'text/javascript';
+                              po.async = true;
+                              po.src = 'https://apis.google.com/js/plusone.js';
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(po, s);
+                          })();
+                      </script>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </header>
+
+  <!-- Le main
+  ================================================== -->
+  <div class="container">
+
+    
+<!-- Le directive
 ================================================== -->
-<script data-main="core/main.js" src="assets/vendor/require.min.js"></script>
+
+<section id="map" ng-controller="MapCtrl" ng-cloak>
+    <div class="page-header">
+        <h1>Google Maps</h1>
+    </div>
+    <div class="well">
+        <div class="row">
+            <div class="span3">
+                <h4>Click to add a marker!</h4>
+                <p>{{zoomMessage}}</p>
+                <ul>
+                    <li ng-repeat="marker in myMarkers">
+                        <a class="btn" ng-click="myMap.panTo(marker.getPosition())">
+                            Pan to Marker {{$index}}
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- this is the confusing part. we have to point the map marker directive
+                    at an existing google.maps.Marker object, so it can hook up events -->
+                <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+                     ui-event="{'map-click': 'openMarkerInfo(marker)'}">
+                </div>
+
+                <div ui-map-info-window="myInfoWindow">
+                    <h1>Marker</h1>
+                    Lat: <input ng-model="currentMarkerLat">, Lng: <input ng-model="currentMarkerLng">
+                    <a class="btn btn-primary" ng-click="setMarkerPosition(currentMarker, currentMarkerLat, currentMarkerLng)">Set Position</a>
+                </div>
+            </div>
+
+            <!--Giving the div an id="map_canvas" fix problems with twitter bootstrap affecting
+            google maps-->
+            <div id="map_canvas" ui-map="myMap" class="span8 map"
+                 ui-map-promise="onGoogleReady.promise"
+                 ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+                 ui-options="mapOptions">
+            </div>
+        </div>
+    </div>
+    <h3>How?</h3>
+    <p class="alert alert-info"><i class="icon-info-sign"></i> Remember that you can pass a variable containing an object to <code>ui-event</code></p>
+<pre class="prettyprint">
+&lt;h4&gt;Click to add a marker!&lt;/h4&gt;
+&lt;p&gt;{{zoomMessage}}&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li ng-repeat=&quot;marker in myMarkers&quot;&gt;
+    &lt;a ng-click=&quot;myMap.panTo(marker.getPosition())&quot;&gt;Pan to Marker {{$index}}&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- this is the confusing part. we have to point the map marker directive
+  at an existing google.maps.Marker object, so it can hook up events --&gt;
+&lt;div ng-repeat=&quot;marker in myMarkers&quot; ui-map-marker=&quot;myMarkers[$index]&quot;
+  ui-event=&quot;{&#x27;map-click&#x27;: &#x27;openMarkerInfo(marker)&#x27;}&quot;&gt;
+&lt;/div&gt;
+
+&lt;div ui-map-info-window=&quot;myInfoWindow&quot;&gt;
+  &lt;h1&gt;Marker&lt;/h1&gt;
+  Lat: &lt;input ng-model=&quot;currentMarkerLat&quot;&gt;, Lng: &lt;input ng-model=&quot;currentMarkerLng&quot;&gt;
+  &lt;a ng-click=&quot;setMarkerPosition(currentMarker, currentMarkerLat, currentMarkerLng)&quot;&gt;Set Position&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- Giving the div an id="map_canvas" fix problems with twitter bootstrap affecting
+google maps --&gt;
+&lt;div id=&quot;map_canvas&quot; ui-map=&quot;myMap&quot; class=&quot;map&quot;
+  ui-event=&quot;{&#x27;map-click&#x27;: &#x27;addMarker($event)&#x27;, &#x27;map-zoom_changed&#x27;: &#x27;setZoomMessage(myMap.getZoom())&#x27; }&quot;
+  ui-options=&quot;mapOptions&quot;&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+$scope.myMarkers = [];
+
+$scope.mapOptions = {
+  center: new google.maps.LatLng(35.784, -78.670),
+  zoom: 15,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+
+$scope.addMarker = function($event) {
+  $scope.myMarkers.push(new google.maps.Marker({
+    map: $scope.myMap,
+    position: $event.latLng
+  }));
+};
+
+$scope.setZoomMessage = function(zoom) {
+  $scope.zoomMessage = &#x27;You just zoomed to &#x27;+zoom+&#x27;!&#x27;;
+  console.log(zoom,&#x27;zoomed&#x27;)
+};
+
+$scope.openMarkerInfo = function(marker) {
+  $scope.currentMarker = marker;
+  $scope.currentMarkerLat = marker.getPosition().lat();
+  $scope.currentMarkerLng = marker.getPosition().lng();
+  $scope.myInfoWindow.open($scope.myMap, marker);
+};
+
+$scope.setMarkerPosition = function(marker, lat, lng) {
+  marker.setPosition(new google.maps.LatLng(lat, lng));
+};
+&lt;/script&gt;
+
+&lt;style&gt;
+.map {
+  height: 400px;
+  width: 600px;
+}
+&lt;/style&gt;
+</pre>
+</section>
+
+
+  </div>
+
+  <!-- Le javascript
+  ================================================== -->
+
+  <script src="assets/vendor/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap.min.js"></script>
+
+  <script src="assets/vendor/prettify.js"></script>
+
+  <script src="assets/vendor/angular.min.js"></script>
+  <script src="core/prettifyDirective.js"></script>
+
+  <script src="https://rawgithub.com/angular-ui/ui-utils/master/modules/event/event.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initCall"></script>
+  <script src="build/ui-map.js"></script>
+
+  <script>
+    function initCall() {
+  console.log("Google maps api initialized.");
+  angular.bootstrap(document.getElementById("map"), ['doc.ui-map']);
+}
+
+angular.module('doc.ui-map', ['ui.map', 'prettifyDirective'])
+  .controller('MapCtrl', ['$scope', function ($scope) {
+
+    $scope.myMarkers = [];
+
+    $scope.mapOptions = {
+      center: new google.maps.LatLng(35.784, -78.670),
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    $scope.addMarker = function ($event) {
+      $scope.myMarkers.push(new google.maps.Marker({
+        map: $scope.myMap,
+        position: $event.latLng
+      }));
+    };
+
+    $scope.setZoomMessage = function (zoom) {
+      $scope.zoomMessage = 'You just zoomed to ' + zoom + '!';
+      console.log(zoom, 'zoomed');
+    };
+
+    $scope.openMarkerInfo = function (marker) {
+      $scope.currentMarker = marker;
+      $scope.currentMarkerLat = marker.getPosition().lat();
+      $scope.currentMarkerLng = marker.getPosition().lng();
+      $scope.myInfoWindow.open($scope.myMap, marker);
+    };
+
+    $scope.setMarkerPosition = function (marker, lat, lng) {
+      marker.setPosition(new google.maps.LatLng(lat, lng));
+    };
+  }])
+;
+  </script>
 
 </body>
 
