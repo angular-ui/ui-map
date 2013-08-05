@@ -17,6 +17,19 @@
     });
   }
 
+  function whenThruthyInScope(variable, scope, callback) {
+    var unregisterWatch;
+
+    if (scope.$eval(variable)) {
+      callback();
+    } else {
+      unregisterWatch = scope.$watch(variable, function() {
+        unregisterWatch();
+        whenThruthyInScope(variable, scope, callback);
+      });
+    }
+  }
+
   app.value('uiMapConfig', {}).directive('uiMap',
     ['uiMapConfig', '$parse', function (uiMapConfig, $parse) {
 
@@ -30,14 +43,16 @@
         restrict: 'A',
         //doesn't work as E for unknown reason
         link: function (scope, elm, attrs) {
-          var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
-          var map = new google.maps.Map(elm[0], opts);
-          var model = $parse(attrs.uiMap);
+          whenThruthyInScope(attrs.uiOptions, scope, function() {
+            var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
+            var map = new google.maps.Map(elm[0], opts);
+            var model = $parse(attrs.uiMap);
 
-          //Set scope variable for the map
-          model.assign(scope, map);
+            //Set scope variable for the map
+            model.assign(scope, map);
 
-          bindMapEvents(scope, mapEvents, map, elm);
+            bindMapEvents(scope, mapEvents, map, elm);            
+          });
         }
       };
     }]);

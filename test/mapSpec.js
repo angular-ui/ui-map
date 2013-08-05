@@ -8,7 +8,7 @@ describe('uiMap', function () {
   }));
 
   function createMap(options, events) {
-    scope.gmapOptions = options || {};
+    scope.gmapOptions = (typeof(options) !== 'undefined') ? options : {};
     scope.gmapEvents = events || {};
     $compile("<div><div ui-map='gmap' ui-options='gmapOptions'" +
       "' ui-event='gmapEvents'></div></div>")(scope);
@@ -32,6 +32,15 @@ describe('uiMap', function () {
 
     it('should bind google map object to scope', function () {
       createMap();
+      expect(scope.gmap).toBeTruthy();
+    });
+
+    it('should wait until having ui-options object before binding google map object to scope', function () {
+      createMap(false);
+      expect(scope.gmap).not.toBeTruthy();
+
+      scope.gmapOptions = {};
+      scope.$apply();
       expect(scope.gmap).toBeTruthy();
     });
 
