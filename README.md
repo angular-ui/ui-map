@@ -1,73 +1,142 @@
-# AngularUI - The companion suite for AngularJS
+# UI.Map [![Build Status](https://secure.travis-ci.org/angular-ui/ui-map.png)](http://travis-ci.org/angular-ui/ui-map)
 
-***
+This directive allows you to add [Google Maps Javascript API](https://developers.google.com/maps/) elements.
 
-[![Build Status](https://secure.travis-ci.org/angular-ui/ui-map.png)](http://travis-ci.org/angular-ui/ui-map)
+## Requirements
+
+- AngularJS
+- [UI.Event](https://github.com/angular-ui/ui-utils/blob/master/modules/event/event.js)
+- [Google Maps Javascript API 3.x](https://developers.google.com/maps/documentation/javascript/)
 
 ## Usage
 
-### Requirements
+You can get it from [Bower](http://bower.io/)
 
-* **AngularJS v1.0.0+** is currently required.
-* **jQuery / Plugins** _(depends on directive)._ Check specific directive dependencies for more information
+```sh
+bower install angular-ui-map
+```  
 
-## Installation
+This will copy the UI.Map files into a `bower_components` folder, along with its dependencies. Load the script files in your application:
 
-The repository comes with the modules pre-built and compressed into the `build/` directory.
+```html
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-utils/modules/event/event.js "></script>
+<script type="text/javascript" src="bower_components/angular-ui-map/src/map.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script>
+```
+
+__Make sure to listen to the [callback parameter when loading the Google Maps API](https://developers.google.com/maps/documentation/javascript/examples/map-simple-async) !   
+The API must be fully loaded before this module !__  
+Here we name this callback `onGoogleReady`. To load your angular app after the Google Maps API you can start it with [angular.bootsrap](http://docs.angularjs.org/api/angular.bootstrap). 
 
 ```javascript
-angular.module('myApp', ['ui']);
+function onGoogleReady() {
+  angular.bootstrap(document.getElementById("map"), ['app.ui-map']);
+}
 ```
 
-The modules can be found in the [Directives](https://github.com/angular-ui/angular-ui/tree/master/modules/directives) and [Filters](https://github.com/angular-ui/angular-ui/tree/master/modules/filters) folders. Check out the readme file associated with each module for specific module usage information.
+Add the UI.Map module as a dependency to your application module :
 
-## Development
-
-You do not need to build the project to use it - see above - but if you are working on it then this is what you need to know.
-
-### Requirements
-
-0. Install [Node.js](http://nodejs.org/) and NPM (should come with)
-
-1. Install local dependencies:
-
-```bash
-$ npm install
+```javascript
+var myAppModule = angular.module('app.ui-map', ['ui.map']);  
 ```
 
-2. Install global dependencies `grunt`, `coffee-script`, and `testacular`:
+Finally, add the directive to tour html:
 
-```bash
-$ npm install -g testacular coffee-script grunt
+```html
+<section id="map" ng-controller="MapCtrl" >
+  <div ui-map="myMap" ui-options="mapOptions" class="map-canvas"></div>
+</section>
+```
+Note that `myMap` will be a [google.maps.Map class](https://developers.google.com/maps/documentation/javascript/reference#Map), and `mapOptions` a [google.maps.MapOptions object](https://developers.google.com/maps/documentation/javascript/reference#MapOptions) (see [below](#options)).
+
+To see something it's better to add some CSS, like
+
+```css
+.map-canvas { height: 400px; }
 ```
 
-### Build Files & Run Tests
+## Options
 
-Before you commit, always run `grunt` to build and test everything once.
+[google.maps.MapOptions object](https://developers.google.com/maps/documentation/javascript/reference#MapOptions) can be passed through the main directive attribute`ui-map`.
 
-```bash
-$ grunt
+```javascript
+myAppModule.controller('MapCtrl', ['$scope', function ($scope) {
+    $scope.mapOptions = {
+      center: new google.maps.LatLng(35.784, -78.670),
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+  }]);
 ```
 
-### Test & Develop
+### UI.Event
 
-The modules come with unit tests that should be run on any changes and certainly before commiting changes to the project.  The unit tests should also provide further insight into the usage of the modules.
+[UI.Event](http://angular-ui.github.io/ui-utils/#/event) allows you to specify custom behavior over user events. You just need to prefix the official event by __map-__ to bind a callback to it.  
 
-First, start the testacular server:
-```bash
-$ grunt server
+For example, the _click_ or *zoom_changed* event of the [google.maps.Map class](https://developers.google.com/maps/documentation/javascript/reference#Map) can be used through the UI.Event object keys __map-click__ and **map-zoom_changed** :
+
+```html
+<section id="map" ng-controller="MapCtrl" >
+  <div  ui-map="myMap"ui-options="mapOptions" class="map-canvas" 
+        ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+  ></div>
+</section>
 ```
-Then, open your browser to http://localhost:8080 and run the watch command to re-run tests on every save:
-```bash
-$ grunt watch
+
+
+## Testing
+
+We use Karma and jshint to ensure the quality of the code.  The easiest way to run these checks is to use grunt:
+
+```sh
+npm install -g grunt-cli
+npm install && bower install
+grunt
 ```
 
-### Publishing
+The karma task will try to open Firefox and Chrome as browser in which to run the tests.  Make sure this is available or change the configuration in `test\karma.conf.js`
 
-For core team: if you wish to publish a new version follow these steps:
 
-1. Bump the version number inside `package.json`
-2. Build and test
-3. Commit the updated `package.json` and `build/` folder on their own commit
-4. Tag the commit: `git tag v[maj].[min].[patch]`
-5. Push the tag: `git push [angular-ui] master --tags`
+### Watch
+
+You can watch files change for your tests with 
+
+```sh
+grunt watch
+```
+
+Make sure to have a Karma server available with it.
+
+
+```sh
+grunt server
+```
+
+(you can force a test on this server with `grunt karma:unit:run`)
+
+
+### Local Doc
+
+The documentation is generated by bower and grunt. To build it run :
+
+```sh
+grunt build-doc
+```
+
+And then, launch a built-in web server on the angular-ui-docs bower module
+
+```sh
+cd bower_components/angular-ui-docs/
+php -S localhost:8000
+or
+python -m SimpleHTTPServer
+```
+
+Then check your [http://localhost:8000/](http://localhost:8000/)
+
+**Tips for fast development** : Inline everything
+
+```sh
+grunt build-doc && cd bower_components/angular-ui-docs/  && php -S localhost:8000 && cd ../..
+```
