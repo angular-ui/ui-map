@@ -14,10 +14,10 @@ angular.module('doc.ui-map', ['ui.map', 'prettifyDirective'])
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    $scope.addMarker = function ($event) {
+    $scope.addMarker = function ($event, $params) {
       $scope.myMarkers.push(new google.maps.Marker({
         map: $scope.myMap,
-        position: $event.latLng
+        position: $params[0].latLng
       }));
     };
 

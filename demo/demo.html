@@ -35,8 +35,7 @@
             <!--Giving the div an id="map_canvas" fix problems with twitter bootstrap affecting
             google maps-->
             <div id="map_canvas" ui-map="myMap" class="span8 map"
-                 ui-map-promise="onGoogleReady.promise"
-                 ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+                 ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
                  ui-options="mapOptions">
             </div>
         </div>
@@ -67,7 +66,7 @@
 &lt;!-- Giving the div an id="map_canvas" fix problems with twitter bootstrap affecting
 google maps --&gt;
 &lt;div id=&quot;map_canvas&quot; ui-map=&quot;myMap&quot; class=&quot;map&quot;
-  ui-event=&quot;{&#x27;map-click&#x27;: &#x27;addMarker($event)&#x27;, &#x27;map-zoom_changed&#x27;: &#x27;setZoomMessage(myMap.getZoom())&#x27; }&quot;
+  ui-event=&quot;{&#x27;map-click&#x27;: &#x27;addMarker($event, $params)&#x27;, &#x27;map-zoom_changed&#x27;: &#x27;setZoomMessage(myMap.getZoom())&#x27; }&quot;
   ui-options=&quot;mapOptions&quot;&gt;
 &lt;/div&gt;
 
@@ -83,7 +82,7 @@ $scope.mapOptions = {
 $scope.addMarker = function($event) {
   $scope.myMarkers.push(new google.maps.Marker({
     map: $scope.myMap,
-    position: $event.latLng
+    position: $params[0].latLng
   }));
 };
 
