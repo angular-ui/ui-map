@@ -1,4 +1,3 @@
-
 <!-- Le directive
 ================================================== -->
 
@@ -79,7 +78,7 @@ $scope.mapOptions = {
   mapTypeId: google.maps.MapTypeId.ROADMAP
 };
 
-$scope.addMarker = function($event) {
+$scope.addMarker = function($event, $params) {
   $scope.myMarkers.push(new google.maps.Marker({
     map: $scope.myMap,
     position: $params[0].latLng
