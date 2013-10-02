@@ -41,7 +41,7 @@ Add the UI.Map module as a dependency to your application module :
 var myAppModule = angular.module('app.ui-map', ['ui.map']);  
 ```
 
-Finally, add the directive to tour html:
+Finally, add the directive to your html:
 
 ```html
 <section id="map" ng-controller="MapCtrl" >
