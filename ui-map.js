@@ -54,12 +54,9 @@
           var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
           opts.content = elm[0];
           var model = $parse(attrs.uiMapInfoWindow);
-          var infoWindow = model(scope);
+          var infoWindow =  new google.maps.InfoWindow(opts);
+          model.assign(scope, infoWindow);
 
-          if (!infoWindow) {
-            infoWindow = new google.maps.InfoWindow(opts);
-            model.assign(scope, infoWindow);
-          }
 
           bindMapEvents(scope, infoWindowEvents, infoWindow, elm);
 
