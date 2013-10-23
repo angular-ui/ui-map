@@ -27,7 +27,7 @@ This will copy the UI.Map files into a `bower_components` folder, along with its
 
 __Make sure to listen to the [callback parameter when loading the Google Maps API](https://developers.google.com/maps/documentation/javascript/examples/map-simple-async) !   
 The API must be fully loaded before this module !__  
-Here we name this callback `onGoogleReady`. To load your angular app after the Google Maps API you can start it with [angular.bootsrap](http://docs.angularjs.org/api/angular.bootstrap). 
+Here we name this callback `onGoogleReady`. To load your angular app after the Google Maps API you can start it with [angular.bootstrap](http://docs.angularjs.org/api/angular.bootstrap). 
 
 ```javascript
 function onGoogleReady() {
