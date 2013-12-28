@@ -8,6 +8,8 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['jshint', 'karma:unit']);
   grunt.registerTask('serve', ['karma:continuous', 'dist', 'build:gh-pages', 'connect:continuous', 'watch']);
   grunt.registerTask('dist', ['ngmin', 'uglify']);
+  //
+
 
   // HACK TO ACCESS TO THE COMPONENT-PUBLISHER
   function fakeTargetTask(prefix){
@@ -28,11 +30,14 @@ module.exports = function (grunt) {
   grunt.registerTask('publish', fakeTargetTask('publish'));
   //
 
+
+  // HACK TO MAKE TRAVIS WORK
   var testConfig = function (configFile, customOptions) {
     var options = { configFile: configFile, singleRun: true };
     var travisOptions = process.env.TRAVIS && { browsers: [ 'Firefox', 'PhantomJS'], reporters: ['dots'] };
     return grunt.util._.extend(options, customOptions, travisOptions);
   };
+  //
 
 
   // Project configuration.
@@ -47,21 +52,7 @@ module.exports = function (grunt) {
         ' * @link <%= pkg.homepage %>',
         ' * @license <%= pkg.license %>',
         ' */',
-        ''].join('\n'),
-      view: {
-        humaName: 'UI.Map',
-        repoName: 'ui-map',
-        demoHTML: grunt.file.read('demo/demo.html'),
-        demoJS: grunt.file.read('demo/demo.js'),
-        css: [
-          'assets/css/demos.css'
-        ],
-        js: [
-          'https://rawgithub.com/angular-ui/ui-utils/master/modules/event/event.js',
-          'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initCall',
-          'build/ui-map.js'
-        ]
-      }
+        ''].join('\n')
     },
 
     watch: {
@@ -149,23 +140,6 @@ module.exports = function (grunt) {
       }
     },
 
-    copy: {
-      main: {
-        files: [
-          {src: ['<%= meta.view.repoName %>.js'], dest: '<%= dist %>/build/<%= meta.view.repoName %>.js', filter: 'isFile'},
-          {src: ['demo/demo.html'], dest: '<%= dist %>/demos.html', filter: 'isFile'},
-          {src: ['demo/demo.css'], dest: '<%= dist %>/assets/css/demos.css', filter: 'isFile'}
-        ]
-      },
-      template: {
-        options: {processContent: function (content) {
-          return grunt.template.process(content);
-        }},
-        files: [
-          {src: ['<%= dist %>/.tmpl/index.tmpl'], dest: '<%= dist %>/index.html'}
-        ]
-      }
-    },
     changelog: {
       options: {
         dest: 'CHANGELOG.md'
