@@ -98,8 +98,7 @@
 ================================================== -->
 <div class="container">
 
-  
-<!-- Le directive
+  <!-- Le directive
 ================================================== -->
 
 <section id="map" ng-controller="MapCtrl" ng-cloak>
@@ -179,7 +178,7 @@ $scope.mapOptions = {
   mapTypeId: google.maps.MapTypeId.ROADMAP
 };
 
-$scope.addMarker = function($event) {
+$scope.addMarker = function($event, $params) {
   $scope.myMarkers.push(new google.maps.Marker({
     map: $scope.myMap,
     position: $params[0].latLng
