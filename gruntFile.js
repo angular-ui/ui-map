@@ -4,8 +4,7 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'karma:unit']);
-  grunt.registerTask('build-doc', ['uglify', 'copy']);
-  grunt.registerTask('server', ['karma:start']);
+  grunt.registerTask('serve', ['karma:continuous', 'dist', 'watch']);
   grunt.registerTask('dist', ['ngmin', 'uglify']);
 
   // HACK TO ACCESS TO THE COMPONENT-PUBLISHER
@@ -62,15 +61,26 @@ module.exports = function (grunt) {
         ]
       }
     },
+
     watch: {
-      karma: {
-        files: ['ui-map.js', 'test/*.js'],
-        tasks: ['karma:unit:run'] //NOTE the :run flag
+      src: {
+        files: ['src/*'],
+        tasks: ['jshint:src', 'karma:unit:run', 'dist']
+      },
+      test: {
+        files: ['test/*.js'],
+        tasks: ['jshint:test', 'karma:unit:run']
+      },
+      demo: {
+        files: ['demo/*', 'publish.js'],
+        tasks: ['jshint']
       }
     },
+
     karma: {
       unit: testConfig('test/karma.conf.js'),
-      start: {configFile: 'test/karma.conf.js'}
+      server: {configFile: 'test/karma.conf.js'},
+      continuous: {configFile: 'test/karma.conf.js',  background: true }
     },
 
     jshint: {
