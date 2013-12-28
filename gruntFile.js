@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (grunt) {
 
   require('load-grunt-tasks')(grunt);
@@ -47,10 +49,10 @@ module.exports = function (grunt) {
         ' */',
         ''].join('\n'),
       view: {
-        humaName: "UI.Map",
-        repoName: "ui-map",
-        demoHTML: grunt.file.read("demo/demo.html"),
-        demoJS: grunt.file.read("demo/demo.js"),
+        humaName: 'UI.Map',
+        repoName: 'ui-map',
+        demoHTML: grunt.file.read('demo/demo.html'),
+        demoJS: grunt.file.read('demo/demo.js'),
         css: [
           'assets/css/demos.css'
         ],

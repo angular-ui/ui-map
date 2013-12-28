@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var app = angular.module('ui.map', ['ui.event']);
 
@@ -5,9 +7,9 @@
   //then we just use ui-event to catch events from an element
   function bindMapEvents(scope, eventsStr, googleObject, element) {
     angular.forEach(eventsStr.split(' '), function (eventName) {
-      //Prefix all googlemap events with 'map-', so eg 'click' 
+      //Prefix all googlemap events with 'map-', so eg 'click'
       //for the googlemap doesn't interfere with a normal 'click' event
-      google.maps.event.addListener(googleObject, eventName, function (event) {
+      window.google.maps.event.addListener(googleObject, eventName, function (event) {
         element.triggerHandler('map-' + eventName, event);
         //We create an $apply if it isn't happening. we need better support for this
         //We don't want to use timeout because tons of these events fire at once,
@@ -31,7 +33,7 @@
         //doesn't work as E for unknown reason
         link: function (scope, elm, attrs) {
           var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
-          var map = new google.maps.Map(elm[0], opts);
+          var map = new window.google.maps.Map(elm[0], opts);
           var model = $parse(attrs.uiMap);
 
           //Set scope variable for the map
@@ -57,7 +59,7 @@
           var infoWindow = model(scope);
 
           if (!infoWindow) {
-            infoWindow = new google.maps.InfoWindow(opts);
+            infoWindow = new window.google.maps.InfoWindow(opts);
             model.assign(scope, infoWindow);
           }
 
@@ -79,7 +81,7 @@
       };
     }]);
 
-  /* 
+  /*
    * Map overlay directives all work the same. Take map marker for example
    * <ui-map-marker="myMarker"> will $watch 'myMarker' and each time it changes,
    * it will hook up myMarker's events to the directive dom element.  Then
