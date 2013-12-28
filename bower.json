@@ -10,11 +10,10 @@
   ],
   "main": "./ui-map.js",
   "dependencies": {
-    "angular": ">= 1.0.2",
-    "angular-ui-utils": "latest"
+    "angular": "1.x",
+    "angular-ui-utils": "0.x"
   },
   "devDependencies": {
-    "angular-mocks": ">= 1.0.2",
-    "angular-ui-docs": "angular-ui/angular-ui-docs"
+    "angular-mocks": "1.x"
   }
 }
