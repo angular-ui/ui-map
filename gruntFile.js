@@ -6,6 +6,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['jshint', 'karma:unit']);
   grunt.registerTask('build-doc', ['uglify', 'copy']);
   grunt.registerTask('server', ['karma:start']);
+  grunt.registerTask('dist', ['ngmin', 'uglify']);
 
   // HACK TO ACCESS TO THE COMPONENT-PUBLISHER
   function fakeTargetTask(prefix){
@@ -86,14 +87,27 @@ module.exports = function (grunt) {
         globals: {}
       }
     },
+
     uglify: {
       options: {banner: '<%= meta.banner %>'},
       build: {
-        files: {
-          '<%= dist %>/build/<%= meta.view.repoName %>.min.js': ['<%= meta.view.repoName %>.js']
-        }
+        expand: true,
+        cwd: 'dist',
+        src: ['*.js'],
+        ext: '.min.js',
+        dest: 'dist'
       }
     },
+
+    ngmin: {
+      main: {
+        expand: true,
+        cwd: 'src',
+        src: ['*.js'],
+        dest: 'dist'
+      }
+    },
+
     copy: {
       main: {
         files: [
