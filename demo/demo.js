@@ -1,6 +1,10 @@
+/* global console:false, google:false */
+/*jshint unused:false */
+'use strict';
+
 function initCall() {
-  console.log("Google maps api initialized.");
-  angular.bootstrap(document.getElementById("map"), ['doc.ui-map']);
+  console.log('Google maps api initialized.');
+  angular.bootstrap(document.getElementById('map'), ['doc.ui-map']);
 }
 
 angular.module('doc.ui-map', ['ui.map', 'prettifyDirective'])
