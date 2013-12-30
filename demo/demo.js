@@ -7,7 +7,7 @@ function initCall() {
   angular.bootstrap(document.getElementById('map'), ['doc.ui-map']);
 }
 
-angular.module('doc.ui-map', ['ui.map', 'prettifyDirective'])
+angular.module('doc.ui-map', ['ui.map', 'prettifyDirective', 'ui.bootstrap', 'plunker' ])
   .controller('MapCtrl', ['$scope', function ($scope) {
 
     $scope.myMarkers = [];
