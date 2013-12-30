@@ -16,7 +16,7 @@ module.exports = function(config) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-ui-utils/modules/event/event.js',
+      'bower_components/angular-ui-utils/event.js',
       'src/*',
       'test/googlemaps.js',
       'test/*Spec.js'
