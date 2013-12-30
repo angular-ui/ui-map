@@ -4,6 +4,6 @@
   "main": "./ui-map.js",
   "dependencies": {
     "angular": "1.x",
-    "angular-ui-utils": "0.x"
+    "angular-ui-utils": "event-0.1.0"
   }
 }
