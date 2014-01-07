@@ -42,7 +42,7 @@
               model.assign(scope, map);
 
               bindMapEvents(scope, mapEvents, map, elm);
-          }
+          };
 
           // retrieve the optional ui-map-load-event:
           // this is to delay the construction of the map until the div containing
