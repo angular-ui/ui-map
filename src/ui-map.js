@@ -42,6 +42,7 @@
               model.assign(scope, map);
 
               bindMapEvents(scope, mapEvents, map, elm);
+              scope.$emit('ui-map-loaded');
           };
 
           // retrieve the optional ui-map-load-event:
