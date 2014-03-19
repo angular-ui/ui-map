@@ -35,7 +35,7 @@
       google maps-->
       <div id="map_canvas" ui-map="myMap" class="col-md-8 map"
            ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
-           ui-options="mapOptions">
+           ui-options="mapOptions" ui-on-finish="myCallback">
       </div>
     </div>
   </div>
