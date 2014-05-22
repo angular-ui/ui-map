@@ -5,11 +5,13 @@
 
   //Setup map events from a google map object to trigger on a given element too,
   //then we just use ui-event to catch events from an element
-  function bindMapEvents(scope, eventsStr, googleObject, element) {
+
+  app.controller('bindMapEvents', ['scope', 'eventsStr', 'googleObject', 'element', '$window',
+  function (scope, eventsStr, googleObject, element, $window) {
     angular.forEach(eventsStr.split(' '), function (eventName) {
       //Prefix all googlemap events with 'map-', so eg 'click'
       //for the googlemap doesn't interfere with a normal 'click' event
-      window.google.maps.event.addListener(googleObject, eventName, function (event) {
+      $window.google.maps.event.addListener(googleObject, eventName, function (event) {
         element.triggerHandler('map-' + eventName, event);
         //We create an $apply if it isn't happening. we need better support for this
         //We don't want to use timeout because tons of these events fire at once,
@@ -17,10 +19,12 @@
         if (!scope.$$phase){ scope.$apply();}
       });
     });
-  }
+  }]);
 
-  app.value('uiMapConfig', {}).directive('uiMap',
-    ['uiMapConfig', '$parse', function (uiMapConfig, $parse) {
+  app.value('uiMapConfig', {});
+
+  app.directive('uiMap',
+    ['uiMapConfig', '$parse', '$window', '$controller', function (uiMapConfig, $parse, $window, $controller) {
 
       var mapEvents = 'bounds_changed center_changed click dblclick drag dragend ' +
         'dragstart heading_changed idle maptypeid_changed mousemove mouseout ' +
@@ -33,19 +37,25 @@
         //doesn't work as E for unknown reason
         link: function (scope, elm, attrs) {
           var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
-          var map = new window.google.maps.Map(elm[0], opts);
+          var map = new $window.google.maps.Map(elm[0], opts);
           var model = $parse(attrs.uiMap);
 
           //Set scope variable for the map
           model.assign(scope, map);
 
-          bindMapEvents(scope, mapEvents, map, elm);
+          $controller('bindMapEvents', {
+            scope: scope,
+            eventsStr: mapEvents,
+            googleObject: map,
+            element: elm
+          });
         }
       };
     }]);
 
   app.value('uiMapInfoWindowConfig', {}).directive('uiMapInfoWindow',
-    ['uiMapInfoWindowConfig', '$parse', '$compile', function (uiMapInfoWindowConfig, $parse, $compile) {
+    ['uiMapInfoWindowConfig', '$parse', '$compile', '$window', '$controller',
+    function (uiMapInfoWindowConfig, $parse, $compile, $window, $controller) {
 
       var infoWindowEvents = 'closeclick content_change domready ' +
         'position_changed zindex_changed';
@@ -59,11 +69,16 @@
           var infoWindow = model(scope);
 
           if (!infoWindow) {
-            infoWindow = new window.google.maps.InfoWindow(opts);
+            infoWindow = new $window.google.maps.InfoWindow(opts);
             model.assign(scope, infoWindow);
           }
 
-          bindMapEvents(scope, infoWindowEvents, infoWindow, elm);
+          $controller('bindMapEvents', {
+            scope: scope,
+            eventsStr: infoWindowEvents,
+            googleObject: infoWindow,
+            element: elm
+          });
 
           /* The info window's contents dont' need to be on the dom anymore,
            google maps has them stored.  So we just replace the infowindow element
@@ -88,13 +103,18 @@
    * ui-event will be able to catch all of myMarker's events. Super simple.
    */
   function mapOverlayDirective(directiveName, events) {
-    app.directive(directiveName, [function () {
+    app.directive(directiveName, ['$controller', function ($controller) {
       return {
         restrict: 'A',
         link: function (scope, elm, attrs) {
           scope.$watch(attrs[directiveName], function (newObject) {
             if (newObject) {
-              bindMapEvents(scope, events, newObject, elm);
+              $controller('bindMapEvents', {
+                scope: scope,
+                eventsStr: events,
+                googleObject: newObject,
+                element: elm
+              });
             }
           });
         }
