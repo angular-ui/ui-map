@@ -21,7 +21,7 @@ This will copy the UI.Map files into a `bower_components` folder, along with its
 ```html
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="bower_components/angular-ui-utils/modules/event/event.js"></script>
-<script type="text/javascript" src="bower_components/angular-ui-map/src/map.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-map/map.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script>
 ```
 
