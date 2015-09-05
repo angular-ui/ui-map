@@ -6,8 +6,8 @@ var fs = require('fs');
 
 module.exports = function() {
 
-  var js_dependencies =[
-    'https://rawgithub.com/angular-ui/ui-utils/master/modules/event/event.js',
+  var js_dependencies = [
+    'https://cdn.rawgit.com/angular-ui/ui-event/master/dist/event.min.js',
     'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initCall'
   ];
 

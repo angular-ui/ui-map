@@ -5,7 +5,7 @@ This directive allows you to add [Google Maps Javascript API](https://developers
 ## Requirements
 
 - AngularJS
-- [UI.Event](https://github.com/angular-ui/ui-utils/blob/master/modules/event/event.js)
+- [UI.Event](https://github.com/angular-ui/ui-event)
 - [Google Maps Javascript API 3.x](https://developers.google.com/maps/documentation/javascript/)
 
 ## Usage
@@ -14,20 +14,20 @@ You can get it from [Bower](http://bower.io/)
 
 ```sh
 bower install angular-ui-map
-```  
+```
 
 This will copy the UI.Map files into a `bower_components` folder, along with its dependencies. Load the script files in your application:
 
 ```html
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-<script type="text/javascript" src="bower_components/angular-ui-utils/modules/event/event.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-event/dist/event.min.js"></script>
 <script type="text/javascript" src="bower_components/angular-ui-map/src/map.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script>
 ```
 
-__Make sure to listen to the [callback parameter when loading the Google Maps API](https://developers.google.com/maps/documentation/javascript/examples/map-simple-async) !   
-The API must be fully loaded before this module !__  
-Here we name this callback `onGoogleReady`. To load your angular app after the Google Maps API you can start it with [angular.bootstrap](http://docs.angularjs.org/api/angular.bootstrap). 
+__Make sure to listen to the [callback parameter when loading the Google Maps API](https://developers.google.com/maps/documentation/javascript/examples/map-simple-async) !
+The API must be fully loaded before this module !__
+Here we name this callback `onGoogleReady`. To load your angular app after the Google Maps API you can start it with [angular.bootstrap](http://docs.angularjs.org/api/angular.bootstrap).
 
 ```javascript
 function onGoogleReady() {
@@ -38,7 +38,7 @@ function onGoogleReady() {
 Add the UI.Map module as a dependency to your application module :
 
 ```javascript
-var myAppModule = angular.module('app.ui-map', ['ui.map']);  
+var myAppModule = angular.module('app.ui-map', ['ui.map']);
 ```
 
 Finally, add the directive to your html:
@@ -72,13 +72,13 @@ myAppModule.controller('MapCtrl', ['$scope', function ($scope) {
 
 ### UI.Event
 
-[UI.Event](http://angular-ui.github.io/ui-utils/#/event) allows you to specify custom behavior over user events. You just need to prefix the official event by __map-__ to bind a callback to it.  
+[UI.Event](https://github.com/angular-ui/ui-event) allows you to specify custom behavior over user events. You just need to prefix the official event by __map-__ to bind a callback to it.
 
 For example, the _click_ or *zoom_changed* event of the [google.maps.Map class](https://developers.google.com/maps/documentation/javascript/reference#Map) can be used through the UI.Event object keys __map-click__ and **map-zoom_changed** :
 
 ```html
 <section id="map" ng-controller="MapCtrl" >
-  <div  ui-map="myMap"ui-options="mapOptions" class="map-canvas" 
+  <div  ui-map="myMap"ui-options="mapOptions" class="map-canvas"
         ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
   ></div>
 </section>
