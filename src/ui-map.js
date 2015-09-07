@@ -81,6 +81,43 @@
       };
     }]);
 
+	/*
+	 * Support for Infobubble [http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/]
+	 * "A InfoBubble is a customizable css3 infowindow."
+	 * Fully customizable with support for tabs
+	*/
+	app.directive('uiMapInfoBubble',
+      ['ui.config', '$parse', '$compile', function (uiConfig, $parse, $compile) {
+
+          var infoBubbleEvents = 'closeclick content_change domready ' +
+            'position_changed zindex_changed';
+          var options = uiConfig.mapInfoBubble || {};
+          window.infoBubbleOptions = options;
+          return {
+              link: function (scope, elm, attrs) {
+                  var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
+                  opts.content = elm[0];
+                  var model = $parse(attrs.uiMapInfoBubble);
+                  var infoBubble = model(scope);
+
+                  window.infoBubbleOptions = opts;
+                  if (!infoBubble) {
+                      infoBubble = new InfoBubble(opts);
+                      model.assign(scope, infoBubble);
+                  }
+
+                  bindMapEvents(scope, infoBubbleEvents, infoBubble, elm);
+
+                  //Decorate infoWindow.open to $compile contents before opening
+                  var _open = infoBubble.open;
+                  infoBubble.open = function open(a1, a2, a3, a4, a5, a6) {
+                        //$compile(elm.contents())(scope);
+                      _open.call(infoBubble, a1, a2, a3, a4, a5, a6);
+			    };
+		    }
+	    };
+    }]);
+	  
   /*
    * Map overlay directives all work the same. Take map marker for example
    * <ui-map-marker="myMarker"> will $watch 'myMarker' and each time it changes,
