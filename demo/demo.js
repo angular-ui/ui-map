@@ -12,6 +12,10 @@ angular.module('doc.ui-map', ['ui.map', 'prettifyDirective', 'ui.bootstrap', 'pl
 
     $scope.myMarkers = [];
 
+    $scope.myCallback = function() {
+      console.log('callback called');
+    };
+
     $scope.mapOptions = {
       center: new google.maps.LatLng(35.784, -78.670),
       zoom: 15,

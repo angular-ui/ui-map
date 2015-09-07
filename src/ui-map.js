@@ -40,6 +40,11 @@
           model.assign(scope, map);
 
           bindMapEvents(scope, mapEvents, map, elm);
+
+          if (attrs.uiOnFinish) {
+            // call the callback
+            scope[attrs.uiOnFinish](map);
+          }
         }
       };
     }]);

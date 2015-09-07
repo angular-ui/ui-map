@@ -55,6 +55,18 @@ describe('uiMap', function () {
       google.maps.event.trigger(scope.gmap, 'dragend');
       expect(scope.county).toBe(2);
     });
+
+    it('should execute the passed callback after having compiled the directive', function() {
+      scope.callbackCalled = false;
+      scope.gmapCallback = function(map) {
+        if (map) {
+          scope.callbackCalled = true;
+        }
+      };
+      
+      $compile("<div><div ui-map='gmap' ui-on-finish='gmapCallback'></div></div>")(scope);
+      expect(scope.callbackCalled).toBeTruthy();
+    });
   });
 
   describe('test infoWindow', function () {
