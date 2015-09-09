@@ -56,6 +56,13 @@ To see something it's better to add some CSS, like
 .map-canvas { height: 400px; }
 ```
 
+To delay the map construction until the page is visible, you can set the optional *ui-map-load-event* attribute.  Here I have delayed google map construction until the ui-router's $viewContentLoaded event has been fired.  This is required when using this component with ui-router.
+
+```html
+<section id="map" ng-controller="MapCtrl" >
+  <div ui-map="myMap" ui-options="mapOptions" ui-map-load-event="$viewContentLoaded"></div>
+</section>
+```
 ## Options
 
 [google.maps.MapOptions object](https://developers.google.com/maps/documentation/javascript/reference#MapOptions) can be passed through the main directive attribute`ui-map`.

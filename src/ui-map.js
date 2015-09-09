@@ -32,14 +32,30 @@
         restrict: 'A',
         //doesn't work as E for unknown reason
         link: function (scope, elm, attrs) {
-          var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
-          var map = new window.google.maps.Map(elm[0], opts);
-          var model = $parse(attrs.uiMap);
+          // this function will display the map
+          var displayMap =  function() {
+              var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
+              var map = new window.google.maps.Map(elm[0], opts);
+              var model = $parse(attrs.uiMap);
 
-          //Set scope variable for the map
-          model.assign(scope, map);
+              //Set scope variable for the map
+              model.assign(scope, map);
 
-          bindMapEvents(scope, mapEvents, map, elm);
+              bindMapEvents(scope, mapEvents, map, elm);
+              scope.$emit('ui-map-loaded');
+          };
+
+          // retrieve the optional ui-map-load-event:
+          // this is to delay the construction of the map until the div containing
+          // it is visible.  In the case of angular-ui-router, this event can be
+          // set to "$viewContentLoaded"
+          var mapLoadEvent = attrs.uiMapLoadEvent;
+          if(mapLoadEvent){
+              scope.$on(mapLoadEvent, displayMap);
+          } else {
+              displayMap();
+          }
+ 
         }
       };
     }]);
