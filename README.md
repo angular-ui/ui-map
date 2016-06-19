@@ -5,7 +5,7 @@ This directive allows you to add [Google Maps Javascript API](https://developers
 ## Requirements
 
 - AngularJS
-- [UI.Event](https://github.com/angular-ui/ui-event)
+- [UI.Utils](https://github.com/angular-ui/ui-utils)
 - [Google Maps Javascript API 3.x](https://developers.google.com/maps/documentation/javascript/)
 
 ## Usage
@@ -20,8 +20,8 @@ This will copy the UI.Map files into a `bower_components` folder, along with its
 
 ```html
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-<script type="text/javascript" src="bower_components/angular-ui-event/dist/event.min.js"></script>
-<script type="text/javascript" src="bower_components/angular-ui-map/src/map.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-utils/ui-utils.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-map/ui-map.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script>
 ```
 
